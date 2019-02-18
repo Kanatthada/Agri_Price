@@ -7,6 +7,13 @@
 <ion-content class = "bg">
   <ion-card no-padding>
     <ion-item class="select">
+      <ion-label>ประเภทราคา</ion-label>
+      <ion-select [(ngModel)]="type" placeholder="เลือกประเภทราคา" okText="ตกลง" cancelText="ยกเลิก">
+        <!-- <ion-option *ngFor="let data of arr_type" (ionSelect)="sendData(data.type_id)">{{ data.type_name }}</ion-option> -->
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="select">
       <ion-label>สินค้าหลัก</ion-label>
       <ion-select [(ngModel)]="type" placeholder="เลือกสินค้าหลัก" okText="ตกลง" cancelText="ยกเลิก">
         <!-- <ion-option *ngFor="let data of arr_type" (ionSelect)="sendData(data.type_id)">{{ data.type_name }}</ion-option> -->

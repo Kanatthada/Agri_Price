@@ -5,13 +5,15 @@ import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { CalendarModule } from "ion2-calendar";
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { LocationPage } from '../pages/location/location';
+import { HistoryPage } from '../pages/history/history';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SearchPage } from '../pages/search/search';
-import { ProducttypePage } from '../pages/producttype/producttype';
-import { ProductdetailPage } from '../pages/productdetail/productdetail';
+import { PurchtypePage } from '../pages/purchtype/purchtype';
+import { PurchdetailPage } from '../pages/purchdetail/purchdetail';
+import { MarkettypePage } from '../pages/markettype/markettype';
+import { MarketdetailPage } from '../pages/marketdetail/marketdetail';
  
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,13 +25,15 @@ import { Geocoder } from '@ionic-native/google-maps';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    LocationPage,
+    HistoryPage,
     HomePage,
     TabsPage,
     SearchPage,
-    ProducttypePage,
-    ProductdetailPage
+    PurchtypePage,
+    PurchdetailPage,
+    MarkettypePage,
+    MarketdetailPage
   ],
   imports: [
     BrowserModule,
@@ -40,13 +44,15 @@ import { Geocoder } from '@ionic-native/google-maps';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    LocationPage,
+    HistoryPage,
     HomePage,
     TabsPage,
     SearchPage,
-    ProducttypePage,
-    ProductdetailPage
+    PurchtypePage,
+    PurchdetailPage,
+    MarkettypePage,
+    MarketdetailPage
   ],
   providers: [
     StatusBar,

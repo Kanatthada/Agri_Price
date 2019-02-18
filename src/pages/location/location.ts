@@ -6,10 +6,10 @@ import { Geolocation } from '@ionic-native/geolocation';
 declare var google: any;
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-location',
+  templateUrl: 'location.html'
 })
-export class AboutPage {
+export class LocationPage {
 
   location: string = "pin";
   isAndroid: boolean = false;

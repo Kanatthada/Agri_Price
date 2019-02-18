@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ProducttypePage } from '../producttype/producttype';
+import { PurchtypePage } from '../purchtype/purchtype';
+import { MarkettypePage } from '../markettype/markettype';
 
 @Component({
   selector: 'page-home',
@@ -26,8 +27,12 @@ export class HomePage {
     this.currentDate = date + " " + monthArray[month] + " " + year;
   }
 
-  goProductTypePage(){
-    this.navCtrl.push(ProducttypePage)
+  goPurchTypePage(){
+    this.navCtrl.push(PurchtypePage)
+  }
+
+  goMarketTypePage(){
+    this.navCtrl.push(MarkettypePage)
   }
 
 }
