@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>ชาวเกษตร</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="bg">
+    <ion-card-header>
+        <h1>ราคาสินค้าเกษตร</h1>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>ประจำวันที่ {{currentDate}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="bg">
+      <button ion-item (click)="goProductTypePage()" class="bg1">
+        <ion-card-header>
+          <h2>ราคารับซื้อ</h2>
+        </ion-card-header>
+      </button>
+  </ion-card>
+
+  <ion-card class="bg">
+    <button ion-item (click)="goProductTypePage()" class="bg2">
+      <ion-card-header>
+        <h2>ราคาตลาดสด</h2>
+      </ion-card-header>
+    </button>
+</ion-card>
+
+</ion-content>

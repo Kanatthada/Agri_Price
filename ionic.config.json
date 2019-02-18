@@ -1,0 +1,7 @@
+{
+  "name": "Agri_Price",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      สถานที่
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button clear (click)="openPopover($event)">
+        <ion-icon name="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-segment [(ngModel)]="location" mode="md" icon-left>
+    <ion-segment-button value="pin">
+      <span> แผนที่ </span>
+    </ion-segment-button>
+
+    <ion-segment-button value="list">
+      <span> รายละเอียด </span>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="location" no-padding>
+    <div [style.display]="location == 'pin' ? 'block' : 'none'">
+      <ion-card>
+        <ion-card-header class="text-header">
+          <ion-icon name="pin"></ion-icon> ตำแหน่งปัจจุบัน
+          <ion-label class="text-addr" text-wrap>ที่อยู่ : {{address}} </ion-label>
+        </ion-card-header>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'list'">
+      <ion-searchbar (ionInput)="searchItem($event)" placeholder="ค้นหาด้วยชื่อสถานที่หรือชื่อจังหวัด" clearInput>
+      </ion-searchbar>
+
+      <ion-list>
+        <ion-item>
+          <img item-start class="pin" src="../assets/imgs/icon_location.png">
+            <div> ชื่อสถานที่ </div>
+            <div> ที่อยู่ </div>
+            <div> ระยะทางจากตำแหน่งปัจจุบัน </div>
+          <img item-end class="pin" src="../assets/imgs/icon-map.png">
+        </ion-item>
+
+        <ion-item>
+            <img item-start class="pin" src="../assets/imgs/icon_location.png">
+            <div> ชื่อสถานที่ </div>
+            <div> ที่อยู่ </div>
+            <div> ระยะทางจากตำแหน่งปัจจุบัน </div>
+          <img item-end class="pin" src="../assets/imgs/icon-map.png">
+        </ion-item>
+
+        <ion-item>
+            <img item-start class="pin" src="../assets/imgs/icon_location.png">
+            <div> ชื่อสถานที่ </div>
+            <div> ที่อยู่ </div>
+            <div> ระยะทางจากตำแหน่งปัจจุบัน </div>
+          <img item-end class="pin" src="../assets/imgs/icon-map.png">
+        </ion-item>
+    </ion-list>
+      
+    </div>
+    
+  </div>
+
+  <div id="map" #map [hidden]="location!='pin'"></div>
+</ion-content>
