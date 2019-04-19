@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { PurchtypePage } from '../purchtype/purchtype';
-import { MarkettypePage } from '../markettype/markettype';
+import { ProductDataProvider } from '../../providers/product-data/product-data';
+import { PurchpricePage } from '../purchprice/purchprice';
+import { MarketpricePage } from '../marketprice/marketprice';
 
 @Component({
   selector: 'page-home',
@@ -10,8 +11,9 @@ import { MarkettypePage } from '../markettype/markettype';
 export class HomePage {
   currentDate;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-   this.getCurrentDate();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datas : ProductDataProvider) {
+
+    this.getCurrentDate();
 
   }
 
@@ -27,12 +29,12 @@ export class HomePage {
     this.currentDate = date + " " + monthArray[month] + " " + year;
   }
 
-  goPurchTypePage(){
-    this.navCtrl.push(PurchtypePage)
+  goPurchPricePage(){
+    this.navCtrl.push(PurchpricePage)
   }
 
-  goMarketTypePage(){
-    this.navCtrl.push(MarkettypePage)
+  goMarketPricePage(){
+    this.navCtrl.push(MarketpricePage)
   }
 
 }

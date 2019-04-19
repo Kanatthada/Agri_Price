@@ -1,34 +1,35 @@
 <ion-header>
   <ion-navbar no-border-bottom>
     <ion-title>
-      สถานที่
+      สถานที่รับซื้อ-ขายสินค้าเกษตร
     </ion-title>
-
     <ion-buttons end>
       <button ion-button clear (click)="openPopover($event)">
         <ion-icon name="md-options"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
-
   <ion-segment [(ngModel)]="location" mode="md" icon-left>
     <ion-segment-button value="pin">
-      <span> แผนที่ </span>
+      <ion-icon name="ios-map"></ion-icon>
+      แผนที่
     </ion-segment-button>
-
     <ion-segment-button value="list">
+      <ion-icon name="ios-list"></ion-icon>
       <span> รายละเอียด </span>
     </ion-segment-button>
   </ion-segment>
 </ion-header>
 
+
 <ion-content>
+
   <div [ngSwitch]="location" no-padding>
     <div [style.display]="location == 'pin' ? 'block' : 'none'">
       <ion-card>
         <ion-card-header class="text-header">
           <ion-icon name="pin"></ion-icon> ตำแหน่งปัจจุบัน
-          <ion-label class="text-addr" text-wrap>ที่อยู่ : {{address}} </ion-label>
+          <ion-label class="text-addr" text-wrap>ที่อยู่ : {{ address }}</ion-label>
         </ion-card-header>
       </ion-card>
     </div>
@@ -36,36 +37,33 @@
     <div *ngSwitchCase="'list'">
       <ion-searchbar (ionInput)="searchItem($event)" placeholder="ค้นหาด้วยชื่อสถานที่หรือชื่อจังหวัด" clearInput>
       </ion-searchbar>
-
       <ion-list>
-        <ion-item>
-          <img item-start class="pin" src="../assets/imgs/icon_location.png">
-            <div> ชื่อสถานที่ </div>
-            <div> ที่อยู่ </div>
-            <div> ระยะทางจากตำแหน่งปัจจุบัน </div>
-          <img item-end class="pin" src="../assets/imgs/icon-map.png">
+        <ion-item *ngFor="let data of arr_data" text-wrap>
+          <div item-start class="pin">
+            <img *ngIf="data.category_name=='ตลาดข้าว'" src="../assets/imgs/pin_rice.png">
+            <img *ngIf="data.category_name=='ตลาดผัก'" src="../assets/imgs/pin_vegetable.png">
+            <img *ngIf="data.category_name=='ตลาดผลไม้'" src="../assets/imgs/pin_fruit.png">
+            <img *ngIf="data.category_name=='ตลาดดอกไม้'" src="../assets/imgs/pin_flower.png">
+            <img *ngIf="data.category_name=='ตลาดปศุสัตว์'" src="../assets/imgs/pin_livestock.png">
+            <img *ngIf="data.category_name=='ตลาดพืชเศรษฐกิจ'" src="../assets/imgs/pin_agri.png">
+            <img *ngIf="data.category_name=='ตลาดสัตว์น้ำ'" src="../assets/imgs/pin_aquatic.png">
+          </div>
+          <div>
+            <p class="locat-name">{{ data.location_name }}</p>
+            <p class="prov-name">จ.{{ data.province_name }}</p>
+          </div>
+          <div item-right>
+            <button ion-button clear (click)="startExternalMap(data.coord_latitude, data.coord_longitude)">
+              <ion-icon name="ios-navigate-outline" class="navigate"></ion-icon>
+            </button>
+          </div>
+          <a class="dist">ระยะทาง {{ data.distance }} กม.</a>
         </ion-item>
+      </ion-list>
 
-        <ion-item>
-            <img item-start class="pin" src="../assets/imgs/icon_location.png">
-            <div> ชื่อสถานที่ </div>
-            <div> ที่อยู่ </div>
-            <div> ระยะทางจากตำแหน่งปัจจุบัน </div>
-          <img item-end class="pin" src="../assets/imgs/icon-map.png">
-        </ion-item>
 
-        <ion-item>
-            <img item-start class="pin" src="../assets/imgs/icon_location.png">
-            <div> ชื่อสถานที่ </div>
-            <div> ที่อยู่ </div>
-            <div> ระยะทางจากตำแหน่งปัจจุบัน </div>
-          <img item-end class="pin" src="../assets/imgs/icon-map.png">
-        </ion-item>
-    </ion-list>
-      
     </div>
-    
-  </div>
 
+  </div>
   <div id="map" #map [hidden]="location!='pin'"></div>
 </ion-content>

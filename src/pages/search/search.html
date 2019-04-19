@@ -16,14 +16,14 @@
     <ion-item class="select">
       <ion-label>สินค้าหลัก</ion-label>
       <ion-select [(ngModel)]="type" placeholder="เลือกสินค้าหลัก" okText="ตกลง" cancelText="ยกเลิก">
-        <!-- <ion-option *ngFor="let data of arr_type" (ionSelect)="sendData(data.type_id)">{{ data.type_name }}</ion-option> -->
+        <ion-option *ngFor="let data of arr_type" (ionSelect)="sendData(data.type_id)">{{ data.type_name }}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item class="select">
       <ion-label>สินค้าย่อย</ion-label>
       <ion-select [(ngModel)]="subtype" placeholder="เลือกสินค้าย่อย" okText="ตกลง" cancelText="ยกเลิก">
-        <!-- <ion-option *ngFor="let data of arr_subtype" value="{{data.subtype_id}}">{{ data.subtype_name }}</ion-option> -->
+        <ion-option *ngFor="let data of arr_subtype" value="{{data.subtype_id}}">{{ data.subtype_name }}</ion-option>
       </ion-select>
     </ion-item>
   </ion-card>

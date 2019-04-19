@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>ราคาขาย</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card class="bgCard">
+    <ion-card-header>
+        <h1>ราคาขายสินค้าเกษตร</h1>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>ประจำวันที่ {{currentDate}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let data of arr_data" class="bg">
+      <button ion-item (click)="goMarketTypePage(data)" class="bg">
+          <img  src="../assets/imgs/{{ data.category_image }}" class="image" item-start>
+          <h2 class="text">{{data.category_name}}</h2>
+      </button>
+  </ion-card>
+
+</ion-content>

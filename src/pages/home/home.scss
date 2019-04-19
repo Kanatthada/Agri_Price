@@ -1,15 +1,13 @@
 page-home {
     ion-content {
         background-size: cover;
+        background-image: url('../assets/imgs/bg_sky.jpg');
     }
-    .bg{
+    .bgCard{
         background:rgba(255, 255, 255, 0.8);
     }
-    .bg1{
-        background:rgba(240, 150, 48, 0.377);
-    }
-    .bg2{
-        background:rgba(255,0,0,0.3);
+    .bg{
+        background:rgba(255, 255, 255, 0.4);
     }
     ion-card-header, ion-card-content{
         text-align: center;
@@ -23,8 +21,5 @@ page-home {
     }
     .text{
         margin: 2%;
-    }
-    .size{
-        width: 50%;
     }
 }

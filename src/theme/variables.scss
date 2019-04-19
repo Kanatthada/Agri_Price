@@ -38,9 +38,16 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  tab:        #8dc22c,
+  stable:     #2e2d2d
 );
 
+$toolbar-background: color($colors, tab);
+$tabs-background: color($colors, tab);
+$tabs-tab-color-active: color($colors, light);
+$tabs-ios-tab-icon-color:color($colors, stable);
+$tabs-ios-tab-text-color:color($colors, stable);
 
 // App iOS Variables
 // --------------------------------------------------
@@ -86,3 +93,7 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+@import url('https://fonts.googleapis.com/css?family=Prompt');
+*{
+    font-family: 'Prompt', sans-serif;
+}

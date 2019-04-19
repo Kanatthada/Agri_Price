@@ -1,0 +1,28 @@
+<!-- Generated template for the PopoverMapComponent component -->
+<ion-list radio-group [(ngModel)]="selectItem">
+  <ion-item-divider color="light" class="text-head">ค้นหาสถานที่ซื้อ-ขายสินค้า:</ion-item-divider>
+  <ion-item>
+    <ion-label class="text-content">สถานที่ใกล้ฉัน</ion-label>
+    <ion-radio checked="true" value="near"></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label class="text-content">สถานที่ทั้งหมด</ion-label>
+    <ion-radio checked="true" value="all"></ion-radio>
+  </ion-item>
+    <div style="padding-left:12px">
+      <ion-item-divider color="light" class="text-head">ประเภทราคาสินค้าเกษตร:</ion-item-divider>
+      <ion-item>
+        <ion-label class="text-content">ราคารับซื้อสินค้าเกษตร</ion-label>
+        <ion-radio checked="true" value="purch"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="text-content">ขายสินค้าเกษตร</ion-label>
+        <ion-radio checked="true" value="market"></ion-radio>
+      </ion-item>
+    </div>
+</ion-list>
+
+<div text-center>
+  <button ion-button (click)="close()" color="light" class="btn">ยกเลิก</button>
+  <button ion-button (click)="showData()" class="btn">ตกลง</button>
+</div>

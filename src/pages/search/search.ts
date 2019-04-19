@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ProductDataProvider } from '../../providers/product-data/product-data';
+import { HistoryPage } from '../history/history';
 import * as ion2Calendar from 'ion2-calendar';
 import * as moment from 'moment';
 
@@ -9,6 +11,13 @@ import * as moment from 'moment';
 })
 export class SearchPage {
 
+  public arr_type: any[];
+  public arr_subtype: any[];
+  public arr_data: any[];
+  private typeId: number;
+  private subtype: string;
+  private fromDate: any;
+  private toDate: any;
   public date: string;
 
   dateRange: {
@@ -22,9 +31,22 @@ export class SearchPage {
     pickMode: 'range'
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datas: ProductDataProvider) {
 
-    
+    this.datas.get_allType().subscribe((response) => {
+      console.log(response);
+      this.arr_type = response;
+    });
+
+  }
+
+  sendData(typeId) {
+    //console.log(typeId);
+    this.typeId = typeId;
+    this.datas.get_subtype(typeId).subscribe((response) => {
+      console.log(response);
+      this.arr_subtype = response;
+    });
   }
 
   changeFormatDate(date) {
@@ -54,5 +76,25 @@ export class SearchPage {
     this.date = from + " ถึง " + to;
     return this.date;
   }
+
+  searchData() {
+    console.log("search");
+    if (!this.type) {
+      console.log("type data empty");
+      alert("ไม่พบข้อมูล กรุณาเลือกสินค้าหลักค่ะ");
+    } else if(!this.subtype){
+      console.log("subtype data empty");
+      alert("ไม่พบข้อมูล กรุณาเลือกสินค้าย่อยค่ะ");
+    } else if(!this.dateRange){
+      console.log("subtype data empty");
+      alert("ไม่พบข้อมูล กรุณาเลือกวันที่ค่ะ");
+    } else {
+      this.fromDate = moment(this.dateRange.from).format('YYYY-MM-DD');
+      this.toDate = moment(this.dateRange.to).format('YYYY-MM-DD');
+      console.log(this.subtype + " " + this.fromDate + " " + this.toDate);
+      this.navCtrl.push(HistoryPage, { type: this.typeId, id: this.subtype, from: this.fromDate, to: this.toDate });
+    }
+  }
+
 
 }

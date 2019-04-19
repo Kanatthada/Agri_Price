@@ -1,16 +1,42 @@
+<!--
+  Generated template for the ProductdetailsPage page.
+
+-->
 <ion-header>
   <ion-navbar>
-    <ion-title>marketdetail</ion-title>
+    <ion-title>{{typeName}}</ion-title> 
+    <ion-buttons end>
+      <button ion-button clear (click)="openPopover($event)">
+        <ion-icon name="md-funnel"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-
+ 
 <ion-content>
-  <ion-card>
-    <div> ชื่อสินค้าย่อย </div>
-    <ion-item>
-        <div> ชื่อจุดรับซื้อ </div>
-        <div> ราคา/หน่วย </div>
-        <div> (วันที่อัปเดตล่าสุด) </div>
-    </ion-item>
+
+  <ion-card *ngFor="let item of arr_subtype">
+    <ion-card-header>
+        <ion-item class="text" text-wrap>
+          {{ item.subtype_name }} 
+        </ion-item> 
+    </ion-card-header>  
+    <ion-card-content>
+      <ion-list *ngFor="let data of arr_data" text-wrap>
+        <ion-item *ngIf="data.reference_id==2 || item.subtype_id==data.subtype_id" class="icon-color">
+          <ion-icon name="pin" item-start class="icon-color"></ion-icon>
+          <div>
+            <p class="locat-name">{{ data.location_name }}</p>
+            <p class="prov-name">จ.{{ data.province_name }}</p>
+          </div> 
+          <div item-right> 
+            <p class="price">{{ data.product_price | number }} <a class="unit-name">{{ data.unit_name }}</a></p>
+            <p class="update" text-right>(อัปเดตล่าสุด : {{ data.lastUpdate | thaiDate:'short' }})</p>
+          </div> 
+          <ion-icon class="dist" ios="ios-car" *ngIf="data.distance!=0"> <a class="dist" >ระยะทาง {{ data.distance }} กม.</a></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
   </ion-card>
+ 
 </ion-content>

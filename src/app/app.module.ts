@@ -14,6 +14,8 @@ import { PurchtypePage } from '../pages/purchtype/purchtype';
 import { PurchdetailPage } from '../pages/purchdetail/purchdetail';
 import { MarkettypePage } from '../pages/markettype/markettype';
 import { MarketdetailPage } from '../pages/marketdetail/marketdetail';
+import { PurchpricePage } from '../pages/purchprice/purchprice';
+import { MarketpricePage } from '../pages/marketprice/marketprice';
  
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,6 +23,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { Geocoder } from '@ionic-native/google-maps';
+import { PopoverComponent } from '../components/popover/popover';
+import { PopoverMapComponent } from '../components/popover-map/popover-map';
+import { ProductDataProvider } from '../providers/product-data/product-data';
+import { ThaiDatePipe } from '../pipes/thai-date/thai-date';
+import { MarketDataProvider } from '../providers/market-data/market-data';
 
 @NgModule({
   declarations: [
@@ -33,11 +40,23 @@ import { Geocoder } from '@ionic-native/google-maps';
     PurchtypePage,
     PurchdetailPage,
     MarkettypePage,
-    MarketdetailPage
+    MarketdetailPage,
+    PopoverComponent,
+    PopoverMapComponent,
+    PurchpricePage,
+    MarketpricePage,
+    ThaiDatePipe
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      backButtonIcon: 'ios-arrow-back' ,
+      backButtonText: 'ย้อนกลับ',
+      pageTransition: 'ios-transition', // attention
+      activator: 'ripple',
+      mode: 'ios',
+      tabsHideOnSubPages: true // attention
+    }),
     HttpModule,
     CalendarModule
   ],
@@ -52,7 +71,11 @@ import { Geocoder } from '@ionic-native/google-maps';
     PurchtypePage,
     PurchdetailPage,
     MarkettypePage,
-    MarketdetailPage
+    MarketdetailPage,
+    PopoverComponent,
+    PopoverMapComponent,
+    PurchpricePage,
+    MarketpricePage
   ],
   providers: [
     StatusBar,
@@ -60,7 +83,9 @@ import { Geocoder } from '@ionic-native/google-maps';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,
     NativeGeocoder,
-    Geocoder
+    Geocoder,
+    ProductDataProvider,
+    MarketDataProvider
   ]
 })
 export class AppModule {}
