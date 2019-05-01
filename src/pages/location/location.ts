@@ -34,7 +34,7 @@ export class LocationPage {
 
     this.loadNearbyLocation();
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad LocationPage');
     this.getLatLng();
@@ -216,7 +216,7 @@ export class LocationPage {
     this.map = new L.Map('map');
     // load a tile layer
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      // attributions: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+      attribution : 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
       maxZoom: 18
     }).addTo(this.map);
     this.map.attributionControl.setPrefix('<a href="https://leafletjs.com/">Leaflet</a> | Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors');

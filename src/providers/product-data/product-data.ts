@@ -36,8 +36,23 @@ export class ProductDataProvider {
     return this.http.get(url).map((res)=>res.json()); 
   }
 
-  get_subtype(typeId){
-    let url = this.host + "/api/index.php/Agri/getSubtype/"+typeId;
+  get_allSubtype(typeId){
+    let url = this.host + "/api/index.php/Agri/getSubtypeAll/"+typeId;
+    return this.http.get(url).map((res)=>res.json()); 
+  }
+
+  get_subtype(groupId, typeId){
+    let url = this.host + "/api/index.php/Agri/getSubtype/" + groupId + "/" + typeId;
+    return this.http.get(url).map((res)=>res.json()); 
+  }
+
+  get_allGroup(){
+    let url = this.host + "/api/index.php/Agri/getGroupAll";
+    return this.http.get(url).map((res)=>res.json()); 
+  }
+
+  get_groupprice(groupId){
+    let url = this.host + "/api/index.php/Agri/getGroup/"+groupId;
     return this.http.get(url).map((res)=>res.json()); 
   }
 
@@ -46,8 +61,8 @@ export class ProductDataProvider {
     return this.http.get(url).map((res)=>res.json()); 
   }
  
-  get_history(id, fromDate, toDate){
-    let url = this.host + "/api/index.php/Agri/getHistory/id="+id+"&fromDate="+fromDate+"&toDate="+toDate;
+  get_history(subtypeId, groupId, fromDate, toDate){
+    let url = this.host + "/api/index.php/Agri/getHistory/"+subtypeId+"/"+groupId+"/"+fromDate+"/"+toDate;
     return this.http.get(url).map((res)=>res.json()); 
   }
 

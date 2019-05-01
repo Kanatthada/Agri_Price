@@ -20,7 +20,7 @@ export class PurchdetailPage {
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public datas: ProductDataProvider, public popoverCtrl: PopoverController, public geolocation: Geolocation, private loadingCtrl: LoadingController) {
     this.typeId = this.navParams.get('id');
     this.typeName = this.navParams.get('name');
-    this.datas.get_subtype(this.typeId).subscribe((response) => {
+    this.datas.get_allSubtype(this.typeId).subscribe((response) => {
       console.log("get api data success");
       this.arr_subtype = response;
     });

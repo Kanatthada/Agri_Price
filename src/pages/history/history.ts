@@ -22,8 +22,10 @@ export class HistoryPage {
   lineChart: any;
 
   public arr_data: Data[];
+  public group: any = [];
   public type: any = [];
   public subtype: any = [];
+  groupId: number;
   subtypeId: string;
   typeId: number;
   fromDate: string;
@@ -38,14 +40,17 @@ export class HistoryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datas: ProductDataProvider, public platform: Platform) {
     this.isAndroid = platform.is('android');
+    this.groupId = this.navParams.get('group');
     this.typeId = this.navParams.get('type');
     this.subtypeId = this.navParams.get('id');
     this.fromDate = this.navParams.get('from');
     this.toDate = this.navParams.get('to');
-    console.log(this.subtypeId + " " + this.fromDate + " " + this.toDate);
+    console.log(this.groupId + " " + this.typeId + " " + this.subtypeId + " " + this.fromDate + " " + this.toDate);
 
-    this.datas.get_history(this.subtypeId, this.fromDate, this.toDate).subscribe((response) => {
+    this.datas.get_history(this.subtypeId, this.groupId, this.fromDate, this.toDate).subscribe((response) => {
+      console.log(response);
       if (response.length != 0) {
+        this.group = response[0].group_name;
         this.type = response[0].type_name;
         this.subtype = response[0].subtype_name;
         this.arr_data = response;
@@ -54,8 +59,9 @@ export class HistoryPage {
 
         this.sortedByDate = this.sortArr(response, 'date');
       } else if (response.length == 0) {
-        this.datas.get_subtype(this.typeId).subscribe((response) => {
-          this.type = response[0].subtype_name;
+        this.datas.get_subtype( this.groupId, this.typeId).subscribe((response) => {
+          this.group = response[0].group_name;
+          this.type = response[0].type_name;
           this.subtype = response[0].subtype_name;
           this.dataNull = "ไม่พบข้อมูล" + response[0].subtype_name + " ในช่วงวันที่ต้องการค้นหา";
         });
@@ -225,7 +231,6 @@ export class HistoryPage {
 
     }
 
-
     return this.getChart(this.lineCanvas.nativeElement, 'line', data, options);
 
   }
@@ -241,6 +246,7 @@ export class HistoryPage {
 }
 
 interface Data {
+  group_name: string;
   type_name: string;
   subtype_name: string;
   location_name: string;

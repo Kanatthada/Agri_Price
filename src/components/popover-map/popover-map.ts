@@ -31,9 +31,14 @@ export class PopoverMapComponent {
   }
 
   showData() {
+    // console.log( this.arr_data);
     console.log("show = " + this.selectItem);
     this.arr_data = this.navParams.get('arrData');
-    if (this.selectItem == "near") {
+    this.data = this.arr_data;
+    if (this.selectItem == "all") {
+      this.data = this.arr_data;
+    }
+    else if (this.selectItem == "near") {
       for (let i in this.arr_data) {
         if (this.arr_data[i].distance <= 30) {
           this.data[i] = this.arr_data[i];
@@ -45,17 +50,25 @@ export class PopoverMapComponent {
         }
       } 
     }
-    else if (this.selectItem == "all") {
-      this.data = this.arr_data;
-    }
     else if (this.selectItem == "purch") {
       const val = 'ราคารับซื้อ';
 
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
+        console.log("เข้าฟังก์ชัน",this.arr_data)
         this.data = this.arr_data.filter((item) => {
           let filterGroupprice = item.group_name.toString().toLowerCase().indexOf(val.toString().toLowerCase()) > -1;
-         return filterGroupprice;  
+          // console.log("filterGroupprice",filterGroupprice)
+          let filter ="";
+          if(filterGroupprice == true){
+            if(item.group_name == val){
+            filter = item.group_name;
+            }
+          console.log("filterGroupprice",filter)
+          return filter;  
+          }
+
+          // return filterGroupprice;  
         })
         console.log(this.data)
       }   
@@ -65,13 +78,21 @@ export class PopoverMapComponent {
 
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
-        this.data = this.arr_data.filter((item) => {
-          let filterGroupprice = item.group_name.toString().toLowerCase().indexOf(val.toString().toLowerCase()) > -1;
-         return filterGroupprice;  
+        this.data = this.arr_data.filter(item => {
+          let filterGroupprice = item.group_name;
+          // console.log()
+          var filter = "";
+          console.log(item);
+          if(item.group_name == val){
+            console.log("filterGroupprice");
+            filter = item.group_name;
+          }
+          console.log("filterGroupprice",filter);
+          return filter;  
         })
-        console.log(this.data)
-      }   
+      } 
     }
+    
 
     this.viewCtrl.dismiss(this.data, this.selectItem);
   }

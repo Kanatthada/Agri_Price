@@ -13,8 +13,11 @@ export class SearchPage {
 
   public arr_type: any[];
   public arr_subtype: any[];
+  public arr_group: any[];
+  public arr_price: any[];
   public arr_data: any[];
   private typeId: number;
+  private groupId: number;
   private subtype: string;
   private fromDate: any;
   private toDate: any;
@@ -24,6 +27,7 @@ export class SearchPage {
     from: string
     to: string
   };
+  group: 'string';
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   optionsRange: ion2Calendar.CalendarComponentOptions = {
     from: new Date(2017, 0, 1),
@@ -33,17 +37,26 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datas: ProductDataProvider) {
 
-    this.datas.get_allType().subscribe((response) => {
+    this.datas.get_allGroup().subscribe((response) => {
       console.log(response);
-      this.arr_type = response;
+      this.arr_group = response;
     });
 
   }
 
+  sendPrice(groupId) {
+    this.groupId = groupId;
+    this.datas.get_groupprice(groupId).subscribe((response) => {
+      console.log(this.groupId);
+      console.log(response);
+      this.arr_type = response;
+    });
+  }
+
   sendData(typeId) {
-    //console.log(typeId);
     this.typeId = typeId;
-    this.datas.get_subtype(typeId).subscribe((response) => {
+    this.datas.get_subtype(this.groupId, typeId).subscribe((response) => {
+      console.log(this.typeId);
       console.log(response);
       this.arr_subtype = response;
     });
@@ -79,7 +92,10 @@ export class SearchPage {
 
   searchData() {
     console.log("search");
-    if (!this.type) {
+    if (!this.group) {
+      console.log("price data empty");
+      alert("ไม่พบข้อมูล กรุณาเลือกหมวดหมู่ราคาสินค้าค่ะ");
+    } else if(!this.type){
       console.log("type data empty");
       alert("ไม่พบข้อมูล กรุณาเลือกสินค้าหลักค่ะ");
     } else if(!this.subtype){
@@ -91,8 +107,8 @@ export class SearchPage {
     } else {
       this.fromDate = moment(this.dateRange.from).format('YYYY-MM-DD');
       this.toDate = moment(this.dateRange.to).format('YYYY-MM-DD');
-      console.log(this.subtype + " " + this.fromDate + " " + this.toDate);
-      this.navCtrl.push(HistoryPage, { type: this.typeId, id: this.subtype, from: this.fromDate, to: this.toDate });
+      console.log(this.groupId + " " + this.typeId + " " + this.subtype + " " + this.fromDate + " " + this.toDate);
+      this.navCtrl.push(HistoryPage, { group: this.groupId, type: this.typeId, id: this.subtype, from: this.fromDate, to: this.toDate });
     }
   }
 

@@ -29,6 +29,7 @@
     "@ionic/lab": "^1.0.20",
     "@ionic/storage": "2.2.0",
     "angular2-chartjs": "^0.5.1",
+    "angularfire2": "^5.0.0-rc.9",
     "cordova-android": "7.1.4",
     "cordova-browser": "5.0.4",
     "cordova-plugin-device": "^2.0.2",

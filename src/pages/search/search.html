@@ -6,10 +6,11 @@
 
 <ion-content class = "bg">
   <ion-card no-padding>
+
     <ion-item class="select">
       <ion-label>ประเภทราคา</ion-label>
-      <ion-select [(ngModel)]="type" placeholder="เลือกประเภทราคา" okText="ตกลง" cancelText="ยกเลิก">
-        <!-- <ion-option *ngFor="let data of arr_type" (ionSelect)="sendData(data.type_id)">{{ data.type_name }}</ion-option> -->
+      <ion-select [(ngModel)]="group" placeholder="เลือกประเภทราคา" okText="ตกลง" cancelText="ยกเลิก">
+        <ion-option *ngFor="let data of arr_group" (ionSelect)="sendPrice(data.group_id)">{{ data.group_name }}</ion-option>
       </ion-select>
     </ion-item>
 
@@ -26,6 +27,7 @@
         <ion-option *ngFor="let data of arr_subtype" value="{{data.subtype_id}}">{{ data.subtype_name }}</ion-option>
       </ion-select>
     </ion-item>
+    
   </ion-card>
   
   <ion-card>
