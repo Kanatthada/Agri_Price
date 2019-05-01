@@ -132,6 +132,8 @@ export class LocationPage {
 
   loadNearbyLocation() {
     this.datas.get_location().subscribe((response) => {
+      console.log("response");
+      console.log(response);
       this.geolocation.getCurrentPosition().then(result => {
         this.latitude = result.coords.latitude;
         this.longitude = result.coords.longitude;
