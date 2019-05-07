@@ -35,10 +35,7 @@ export class PopoverMapComponent {
     console.log("show = " + this.selectItem);
     this.arr_data = this.navParams.get('arrData');
     this.data = this.arr_data;
-    if (this.selectItem == "all") {
-      this.data = this.arr_data;
-    }
-    else if (this.selectItem == "near") {
+    if (this.selectItem == "near") {
       for (let i in this.arr_data) {
         if (this.arr_data[i].distance <= 30) {
           this.data[i] = this.arr_data[i];
@@ -50,12 +47,14 @@ export class PopoverMapComponent {
         }
       } 
     }
+    else if (this.selectItem == "all") {
+      this.data = this.arr_data;
+    }
     else if (this.selectItem == "purch") {
       const val = 'ราคารับซื้อ';
 
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
-        console.log("เข้าฟังก์ชัน",this.arr_data)
         this.data = this.arr_data.filter((item) => {
           let filterGroupprice = item.group_name.toString().toLowerCase().indexOf(val.toString().toLowerCase()) > -1;
           // console.log("filterGroupprice",filterGroupprice)
@@ -92,7 +91,6 @@ export class PopoverMapComponent {
         })
       } 
     }
-    
 
     this.viewCtrl.dismiss(this.data, this.selectItem);
   }

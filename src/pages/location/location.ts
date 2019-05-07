@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, PopoverController, ViewController, Platform } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, ViewController, LoadingController, Platform } from 'ionic-angular';
 import { PopoverMapComponent } from '../../components/popover-map/popover-map';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ProductDataProvider } from '../../providers/product-data/product-data';
@@ -29,10 +29,22 @@ export class LocationPage {
   address: string;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public viewCtrl: ViewController, public geolocation: Geolocation, public datas: ProductDataProvider, public platform: Platform) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public viewCtrl: ViewController, public geolocation: Geolocation, public datas: ProductDataProvider, public platform: Platform, private loadingCtrl: LoadingController) {
     this.isAndroid = platform.is('android');
 
     this.loadNearbyLocation();
+
+    this.presentLoader();
+  }
+
+  presentLoader(){
+    let loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      content: 'รอสักครู่ กำลังโหลด...',
+      duration: 300
+    });
+
+    loading.present();
   }
   
   ionViewDidLoad() {
@@ -272,49 +284,49 @@ export class LocationPage {
     for (let i = 0; i < arr_data.length; i++) {
       if (arr_data[i].category_name == "ตลาดข้าว") {
         myIcon = L.icon({
-          iconUrl: 'assets/imgs/c_agri.png',
+          iconUrl: 'assets/imgs/pin_rice.png',
           iconSize: [37, 37],
           iconAnchor: [9, 21],
           popupAnchor: [0, -14]
         });
       } else if (arr_data[i].category_name == "ตลาดดอกไม้") {
         myIcon = L.icon({
-          iconUrl: 'assets/imgs/c_agri.png',
+          iconUrl: 'assets/imgs/pin_flower.png',
           iconSize: [37, 37],
           iconAnchor: [9, 21],
           popupAnchor: [0, -14]
         });
       } else if (arr_data[i].category_name == "ตลาดปศุสัตว์") {
         myIcon = L.icon({
-          iconUrl: 'assets/imgs/c_agri.png',
+          iconUrl: 'assets/imgs/pin_livestock.png',
           iconSize: [37, 37],
           iconAnchor: [9, 21],
           popupAnchor: [0, -14]
         });
       } else if (arr_data[i].category_name == "ตลาดผลไม้") {
         myIcon = L.icon({
-          iconUrl: 'assets/imgs/c_agri.png',
+          iconUrl: 'assets/imgs/pin_fruit.png',
           iconSize: [37, 37],
           iconAnchor: [9, 21],
           popupAnchor: [0, -14]
         });
       } else if (arr_data[i].category_name == "ตลาดผัก") {
         myIcon = L.icon({
-          iconUrl: 'assets/imgs/c_agri.png',
+          iconUrl: 'assets/imgs/pin_vegetable.png',
           iconSize: [37, 37],
           iconAnchor: [9, 21],
           popupAnchor: [0, -14]
         });
       } else if (arr_data[i].category_name == "ตลาดพืชเศรษฐกิจ") {
         myIcon = L.icon({
-          iconUrl: 'assets/imgs/c_agri.png',
+          iconUrl: 'assets/imgs/pin_agri.png',
           iconSize: [37, 37],
           iconAnchor: [9, 21],
           popupAnchor: [0, -14]
         });
       } else if (arr_data[i].category_name == "ตลาดสัตว์น้ำ") {
         myIcon = L.icon({
-          iconUrl: 'assets/imgs/c_agri.png',
+          iconUrl: 'assets/imgs/pin_aquatic.png',
           iconSize: [37, 37],
           iconAnchor: [9, 21],
           popupAnchor: [0, -14]
@@ -322,7 +334,7 @@ export class LocationPage {
       } else {
         console.log(arr_data[i]);
         myIcon = L.icon({
-          iconUrl: 'assets/imgs/c_agri.png',
+          iconUrl: 'assets/imgs/icon_market.png',
           iconSize: [37, 37],
           iconAnchor: [9, 21],
           popupAnchor: [0, -14]

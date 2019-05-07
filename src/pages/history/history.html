@@ -14,6 +14,7 @@
       <div class="underline">
         <ion-icon name="search"></ion-icon> ผลการค้นหา
       </div>
+      <div class="text"> หมวดหมู่ราคา : {{ group }} </div>
       <div class="text"> สินค้าหลัก : {{ type }} </div>
       <div class="text" text-wrap> สินค้าย่อย : {{ subtype }} </div>
       <div class="text"> ช่วงวันที่ : {{ fromDate | thaiDate:'medium' }} - {{ toDate | thaiDate:'medium' }} </div>
@@ -37,7 +38,7 @@
         </ion-label>
         <canvas id="lineCanvas" #lineCanvas height="auto" width="500"></canvas>
         <ion-item class="ref" text-wrap>
-          (ข้อมูลนี้เป็นราคา{{ subtype }}ที่มาจากเว็บไซต์รักบ้านเกิด)
+          (ข้อมูลนี้เป็นราคา {{ subtype }} ที่มาจากเว็บไซต์ {{ ref }})
         </ion-item>
 
       </div>
@@ -49,7 +50,7 @@
         <ion-list no-padding>
           <ion-item class="thead" text-center>
             <ion-label col-3> วันที่ </ion-label>
-            <ion-label col-5> สถานที่รับซื้อ </ion-label>
+            <ion-label col-5> สถานที่ </ion-label>
             <ion-label col-4> ราคา </ion-label>
           </ion-item>
         </ion-list>
@@ -65,7 +66,7 @@
               </ion-label>
             </ion-item>
           </ion-list>
-          <ion-label *ngIf="arr_data!=null" class="text">แหล่งที่มา : <ion-icon name="pin" class="icon-pin"></ion-icon> รักบ้านเกิด</ion-label>
+          <ion-label *ngIf="arr_data!=null" class="text">แหล่งที่มา : <ion-icon name="pin" class="icon-pin"></ion-icon> {{ ref }}</ion-label>
         </div>
 
       </div>

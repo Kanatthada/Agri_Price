@@ -25,6 +25,7 @@ export class HistoryPage {
   public group: any = [];
   public type: any = [];
   public subtype: any = [];
+  public ref: any = [];
   groupId: number;
   subtypeId: string;
   typeId: number;
@@ -53,6 +54,7 @@ export class HistoryPage {
         this.group = response[0].group_name;
         this.type = response[0].type_name;
         this.subtype = response[0].subtype_name;
+        this.ref = response[0].reference_name;
         this.arr_data = response;
 
         this.getLineChart(response);
@@ -63,6 +65,7 @@ export class HistoryPage {
           this.group = response[0].group_name;
           this.type = response[0].type_name;
           this.subtype = response[0].subtype_name;
+          this.ref = response[0].reference_name;
           this.dataNull = "ไม่พบข้อมูล" + response[0].subtype_name + " ในช่วงวันที่ต้องการค้นหา";
         });
       }
@@ -253,4 +256,5 @@ interface Data {
   province_name: string;
   product_price: number;
   date: string;
+  reference_name: string;
 }
